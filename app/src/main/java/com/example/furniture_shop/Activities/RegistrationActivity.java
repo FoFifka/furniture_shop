@@ -29,6 +29,10 @@ public class RegistrationActivity extends AppCompatActivity {
         edt_surname = findViewById(R.id.editText_surname_reg_activity);
         btn_continue_reg = findViewById(R.id.button_continue_registration_reg_activity);
 
+        edt_name.setText(RegistrationActivity2.username);
+        edt_surname.setText(RegistrationActivity2.usersurname);
+        edt_email.setText(RegistrationActivity2.useremail);
+
         btn_continue_reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,8 +48,17 @@ public class RegistrationActivity extends AppCompatActivity {
                     RegistrationActivity2.useremail = edt_email.getText().toString();
                     startActivity(new Intent(getApplicationContext(), RegistrationActivity2.class));
                     finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+        finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        super.onBackPressed();
     }
 }

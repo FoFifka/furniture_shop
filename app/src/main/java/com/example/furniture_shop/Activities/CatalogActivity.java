@@ -96,6 +96,14 @@ public class CatalogActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        super.onBackPressed();
+    }
+
     void getCategoriesRequest() {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         String url = AppParams.API_CATEGORIES;

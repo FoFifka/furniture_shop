@@ -3,6 +3,7 @@ package com.example.furniture_shop.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static User this_user = new User();
     static boolean requestHasBeenSent = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,13 +92,25 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 } else {
+                    logout();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                logout();
             }
         });
         queue.add(jsonObjectRequest);
+    }
+    void logout() {
+        SharedPreferences sharedPreferences = getSharedPreferences(AppParams.SHARED_PREFS, MODE_PRIVATE);
+        sharedPreferences.edit()
+                .putBoolean(AppParams.SP_USER_IS_LOGINED, false)
+                .putString(AppParams.SP_BEARER_TOKEN, "")
+                .apply();
+        startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+        finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

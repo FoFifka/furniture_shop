@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.furniture_shop.Classes.AppParams;
 import com.example.furniture_shop.R;
@@ -17,10 +18,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    TextView user_name, user_surname, user_email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        user_email = findViewById(R.id.textView_email_profile_activity);
+        user_name = findViewById(R.id.textView_name_profile_activity);
+        user_surname = findViewById(R.id.textView_surname_profile_activity);
+
+        user_email.setText(MainActivity.this_user.getEmail());
+        user_name.setText(MainActivity.this_user.getName());
+        user_surname.setText(MainActivity.this_user.getSurname());
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.profile);
@@ -66,7 +77,13 @@ public class ProfileActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        super.onBackPressed();
+    }
     public void logout() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Выйти из аккаунта");
@@ -82,6 +99,7 @@ public class ProfileActivity extends AppCompatActivity {
                         .apply();
                 startActivity(new Intent(getApplicationContext(), AuthActivity.class));
                 finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
         alertDialogBuilder.setNegativeButton(R.string.cancel_button, new DialogInterface.OnClickListener() {

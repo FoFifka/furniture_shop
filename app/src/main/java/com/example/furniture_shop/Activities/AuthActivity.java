@@ -107,7 +107,7 @@ public class AuthActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 btn_signin.setEnabled(true);
-                Toast.makeText(getApplicationContext(), "Ошибка авторизации", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Ошибка авторизации", Toast.LENGTH_SHORT).show();
 
                 progressBar.setVisibility(View.INVISIBLE);
                 logo.setVisibility(View.VISIBLE);

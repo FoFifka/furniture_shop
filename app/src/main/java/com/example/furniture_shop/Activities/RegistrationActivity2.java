@@ -32,7 +32,9 @@ public class RegistrationActivity2 extends AppCompatActivity {
     Button btn_create_acc;
     ProgressBar progressBar;
 
-    public static String username, usersurname, useremail;
+    public static String username = "";
+    public static String usersurname = "";
+    public static String useremail = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
                     btn_create_acc.setVisibility(View.INVISIBLE);
                     signUpRequest();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Пароли не совпадают", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Пароли не совпадают", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -84,16 +86,16 @@ public class RegistrationActivity2 extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, object, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(getApplicationContext(), "Регистрация прошла успешно!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Регистрация прошла успешно!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), AuthActivity.class));
                 finish();
-
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Ошибка регистрации", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Ошибка регистрации", Toast.LENGTH_SHORT).show();
 
                 progressBar.setVisibility(View.INVISIBLE);
                 logo.setVisibility(View.VISIBLE);
@@ -105,5 +107,13 @@ public class RegistrationActivity2 extends AppCompatActivity {
             }
         });
         queue.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+        finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        super.onBackPressed();
     }
 }

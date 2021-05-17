@@ -67,6 +67,7 @@ public class ProductsActivity extends AppCompatActivity {
 
                 startActivity(new Intent(getApplicationContext(), ProductActivity.class));
                 finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
@@ -101,6 +102,13 @@ public class ProductsActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        super.onBackPressed();
+    }
     void getProductsRequest(String id) {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         String url = AppParams.API_PRODUCTS;
@@ -128,6 +136,7 @@ public class ProductsActivity extends AppCompatActivity {
                     }
                     startActivity(new Intent(getApplicationContext(), ProductsActivity.class));
                     finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
