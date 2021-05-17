@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.ProductActivity">
+
+    <ProgressBar
+        android:id="@+id/progressBar_product"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:translationZ="10dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/product"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView_product"
+                android:layout_width="2in"
+                android:layout_height="2in"
+                android:layout_marginTop="20dp"
+                android:src="@color/green_200" />
+
+            <TextView
+                android:id="@+id/textView_product_name"
+                android:layout_width="2in"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Название товара"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView_product_description"
+                android:layout_width="2in"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:hint="Описание товара" />
+
+            <LinearLayout
+                android:layout_width="2in"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView_product_price"
+                    android:layout_width="1.5in"
+                    android:layout_height="wrap_content"
+                    android:hint="0 руб"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:id="@+id/editText_product_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="2"
+                    android:inputType="number"
+                    android:text="1"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_product_add_cart"
+                android:layout_width="2in"
+                android:layout_height="30pt"
+                android:layout_marginTop="70dp"
+                android:text="@string/add_cart" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemBackground="@color/green_500"
+        app:itemIconTint="@drawable/nav_selector"
+        app:itemTextColor="@drawable/nav_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom_navigation" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

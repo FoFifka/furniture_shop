@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">FurnitureShop</string>
+    <string name="password">Пароль</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="e_mail">Почта</string>
+    <string name="patronymic">Отчество</string>
+    <string name="repeat_password">Повторите пароль</string>
+    <string name="sign_in">Войти</string>
+    <string name="sign_up">Нет аккаунта? <u>Зарегистрируйтесь!</u></string>
+    <string name="already_have_acc"><u>У меня уже есть аккаунт</u></string>
+    <string name="back"><u>Назад</u></string>
+    <string name="continue_registration">Продолжить регистрацию</string>
+    <string name="create_account">Зарегистрироваться</string>
+    <string name="add_cart">Добавить в корзину</string>
+    <string name="action_settings">Настройки</string>
+    <string name="action_signout">Выйти</string>
+    <string name="action_delete">Удалить</string>
+
+    <string name="positive_button">Да!</string>
+    <string name="cancel_button">Отмена</string>
+
+    <string name="menu_home">Главная</string>
+    <string name="menu_catalog">Каталог</string>
+    <string name="menu_profile">Профиль</string>
+    <string name="menu_cart">Корзина</string>
+</resources>
