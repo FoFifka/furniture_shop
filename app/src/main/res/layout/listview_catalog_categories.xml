@@ -33,7 +33,7 @@
 
         <ImageView
             android:id="@+id/imageView_catalog_category"
-            android:layout_width="395dp"
+            android:layout_width="380dp"
             android:layout_height="180dp"
             android:scaleType="fitXY"
             android:src="@color/green_200"

@@ -2,6 +2,7 @@ package com.example.furniture_shop.Classes;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,7 +79,7 @@ public class CartProductAdapter extends ArrayAdapter<CartProducts> {
         name.setText(cartProduct.getName());
         description.setText(cartProduct.getDescription());
         count.setText(cartProduct.getCount());
-        price.setText(cartProduct.getPrice());
+        price.setText(cartProduct.getPrice()+" руб.");
         getImageRequest(cartProduct.getImage(), image);
 
 

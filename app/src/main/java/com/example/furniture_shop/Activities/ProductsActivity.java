@@ -127,12 +127,11 @@ public class ProductsActivity extends AppCompatActivity {
 
                         String product_id = product.getString("id");
                         String product_name = product.getString("name");
-                        String product_descritpion = product.getString("description");
+                        String product_description = product.getString("description");
                         String product_image = product.getString("image");
                         int product_price =  product.getInt("price");
 
-
-                        products.add(new Products(product_id, product_name,product_descritpion,product_image,product_price));
+                        products.add(new Products(product_id, product_name,product_description,product_image,product_price));
                     }
                     startActivity(new Intent(getApplicationContext(), ProductsActivity.class));
                     finish();
@@ -153,6 +152,5 @@ public class ProductsActivity extends AppCompatActivity {
             }
         };
         queue.add(stringRequest);
-
     }
 }

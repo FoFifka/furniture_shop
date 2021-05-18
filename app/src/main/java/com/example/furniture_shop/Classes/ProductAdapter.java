@@ -48,7 +48,7 @@ public class ProductAdapter extends ArrayAdapter<Products> {
 
         name.setText(product.getName());
         description.setText(product.getDescription());
-        price.setText(product.getPrice()+"");
+        price.setText(product.getPrice()+"р.");
         getImageRequest(product.getImage(), image);
 
         return convertView;

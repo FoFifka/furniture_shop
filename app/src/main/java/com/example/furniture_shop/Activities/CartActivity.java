@@ -1,9 +1,12 @@
 package com.example.furniture_shop.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ActionMode;
@@ -13,9 +16,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -45,11 +50,14 @@ import java.util.Map;
 public class CartActivity extends AppCompatActivity {
 
     ListView listViewCart;
+    Button btn_createOrder;
+    TextView txt_totalPrice;
     public static ArrayList<CartProducts> cartProducts = new ArrayList<CartProducts>();
     public static boolean requestHasBeenSent = false;
     public static boolean isActionMode = false;
     public static ArrayList<CartProducts> UserSelection = new ArrayList<>();
     public static ActionMode actionMode = null;
+    public static int totalPrice = 0;
 
 
     @Override
@@ -58,7 +66,11 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 
         listViewCart = findViewById(R.id.listView_cart);
+        btn_createOrder = findViewById(R.id.button_create_order_cart);
+        txt_totalPrice = findViewById(R.id.total_price_card);
         listViewCart.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
+
+        txt_totalPrice.setText(totalPrice+" руб.");
 
         if(!requestHasBeenSent) {
             getCartProductRequest();
@@ -72,6 +84,13 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                //
+            }
+        });
+
+        btn_createOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkBeforeCreateOrder();
             }
         });
 
@@ -157,6 +176,8 @@ public class CartActivity extends AppCompatActivity {
 
 
     void getCartProductRequest() {
+        totalPrice = 0;
+
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
         String url = AppParams.API_GET_CART_PRODUCTS;
@@ -174,11 +195,13 @@ public class CartActivity extends AppCompatActivity {
                         String product_id = cartproduct.getString("product_id");
                         String name = cartproduct.getString("name");
                         String description = cartproduct.getString("description");
-                        String price = cartproduct.getString("price")+" руб.";
+                        String price = cartproduct.getString("price");
                         String count = "Кол-во: "+cartproduct.getString("count");
                         String image = cartproduct.getString("image");
 
                         cartProducts.add(new CartProducts(id, product_id, count, name, description, image, price));
+
+                        totalPrice += Integer.parseInt(cartproduct.getString("price")) * Integer.parseInt(cartproduct.getString("count"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -235,5 +258,58 @@ public class CartActivity extends AppCompatActivity {
         }
         });
         queue.add(jsonArrayRequest);
+    }
+    void addOrderRequest() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = AppParams.API_ORDER;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CartActivity.this);
+                alertDialogBuilder.setTitle("Оформление заказа");
+                alertDialogBuilder.setMessage("Заказ успешно оформлен, вам на почту отправлена инструкция с оплатой.");
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialogBuilder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        getCartProductRequest();
+                        alertDialog.dismiss();
+                    }
+                });
+                alertDialogBuilder.show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            public Map<String,String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", MainActivity.this_user.getId());
+                return params;
+            }
+        };
+        queue.add(stringRequest);
+    }
+    void checkBeforeCreateOrder() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Оформление заказа");
+        alertDialogBuilder.setMessage("Вы действительно хотите оформить заказ!");
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialogBuilder.setPositiveButton(R.string.create_order, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                addOrderRequest();
+            }
+        });
+        alertDialogBuilder.setNegativeButton(R.string.cancel_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialogBuilder.show();
     }
 }

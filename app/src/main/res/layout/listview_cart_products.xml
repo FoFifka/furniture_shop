@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/textView_description_cart"
-        android:layout_width="175dp"
+        android:layout_width="140dp"
         android:layout_height="45dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
