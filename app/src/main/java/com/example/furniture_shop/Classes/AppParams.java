@@ -6,8 +6,10 @@ public class AppParams {
     public static final String API_SIGNUP = BASE_URL + "/api/signup";
     public static final String API_USER = BASE_URL + "/api/user";
     public static final String API_CATEGORIES = BASE_URL + "/api/getcategories";
+    public static final String API_ADD_CATEGORY = BASE_URL + "/api/addcategory";
     public static final String API_PRODUCTS = BASE_URL + "/api/getproducts";
     public static final String API_PRODUCT = BASE_URL + "/api/getproduct";
+    public static final String API_ADD_PRODUCT = BASE_URL + "/api/addproduct";
     public static final String API_GET_CART_PRODUCTS = BASE_URL + "/api/getcartproducts";
     public static final String API_ORDER = BASE_URL + "/api/addorder";
     public static final String API_ADD_CART_PRODUCT = BASE_URL + "/api/addcartproduct";

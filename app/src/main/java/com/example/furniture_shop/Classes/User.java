@@ -5,6 +5,15 @@ public class User {
     private String name;
     private String surname;
     private String email;
+    private String permission;
+
+    public String getPermission() {
+        return permission;
+    }
+
+    public void setPermission(String permission) {
+        this.permission = permission;
+    }
 
     public String getId() {
         return id;

@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this_user.setEmail(response.getString("email"));
                         MainActivity.this_user.setName(response.getString("name"));
                         MainActivity.this_user.setSurname(response.getString("surname"));
+                        MainActivity.this_user.setPermission(response.getString("permission_id"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

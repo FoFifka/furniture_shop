@@ -14,9 +14,13 @@
     <string name="create_account">Зарегистрироваться</string>
     <string name="add_cart">Добавить в корзину</string>
     <string name="create_order">Оформить заказ</string>
+
+
     <string name="action_settings">Настройки</string>
     <string name="action_signout">Выйти</string>
     <string name="action_delete">Удалить</string>
+    <string name="action_add_category">Создать категорию</string>
+    <string name="action_add_product">Добавить продукт</string>
 
 
     <string name="button_ok">ОК</string>

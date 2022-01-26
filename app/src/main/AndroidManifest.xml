@@ -13,10 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Furniture_shop"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.ProductsActivity"></activity>
+        <activity
+            android:name=".Activities.Admin.AddProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Admin.AddCategoryActivity"
+            android:exported="false" />
+        <activity android:name=".Activities.ProductsActivity" />
         <activity android:name=".Activities.ProductActivity" />
-        <activity android:name=".Activities.ProfileActivity" android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"/>
-        <activity android:name=".Activities.CartActivity" android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"/>
+        <activity
+            android:name=".Activities.ProfileActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
+        <activity
+            android:name=".Activities.CartActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
         <activity android:name=".Activities.CatalogActivity" />
         <activity android:name=".Activities.RegistrationActivity2" />
         <activity android:name=".Activities.RegistrationActivity" />
