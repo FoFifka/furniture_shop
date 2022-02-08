@@ -47,9 +47,17 @@ public class RegistrationActivity extends AppCompatActivity {
                     RegistrationActivity2.usersurname = edt_surname.getText().toString();
                     RegistrationActivity2.useremail = edt_email.getText().toString();
                     startActivity(new Intent(getApplicationContext(), RegistrationActivity2.class));
-                    finish();
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 }
+            }
+        });
+
+        txt_have_acc_yet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     }

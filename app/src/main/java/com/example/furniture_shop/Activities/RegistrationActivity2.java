@@ -1,5 +1,6 @@
 package com.example.furniture_shop.Activities;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -52,19 +53,41 @@ public class RegistrationActivity2 extends AppCompatActivity {
         btn_create_acc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(edt_password.getText().toString().equals(edt_repeat_password.getText().toString())) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    logo.setVisibility(View.INVISIBLE);
-                    txt_back.setVisibility(View.INVISIBLE);
-                    txt_have_acc_yet.setVisibility(View.INVISIBLE);
-                    edt_password.setVisibility(View.INVISIBLE);
-                    edt_repeat_password.setVisibility(View.INVISIBLE);
-                    btn_create_acc.setVisibility(View.INVISIBLE);
-                    signUpRequest();
+                if(edt_password.getText().toString().trim().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Поля не могут быть пустыми!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Пароли не совпадают", Toast.LENGTH_SHORT).show();
+                    if(edt_password.getText().toString().equals(edt_repeat_password.getText().toString())) {
+                        progressBar.setVisibility(View.VISIBLE);
+                        logo.setVisibility(View.INVISIBLE);
+                        txt_back.setVisibility(View.INVISIBLE);
+                        txt_have_acc_yet.setVisibility(View.INVISIBLE);
+                        edt_password.setVisibility(View.INVISIBLE);
+                        edt_repeat_password.setVisibility(View.INVISIBLE);
+                        btn_create_acc.setVisibility(View.INVISIBLE);
+                        signUpRequest();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Пароли не совпадают", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
+
+            }
+        });
+
+        txt_have_acc_yet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
+        txt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     }
@@ -111,9 +134,8 @@ public class RegistrationActivity2 extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(getApplicationContext(), AuthActivity.class));
         finish();
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }
