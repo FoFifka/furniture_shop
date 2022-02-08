@@ -27,7 +27,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     public static User this_user = new User();
-    static boolean requestHasBeenSent = false;
+    public static boolean requestHasBeenSent = false;
 
 
     @Override

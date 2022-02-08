@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 public class CatalogCategories {
 
-    private static ArrayList<CatalogCategories> categories = new ArrayList<CatalogCategories>();
-
     private String category_id;
     private String category_name;
     private String category_image;
@@ -16,8 +14,6 @@ public class CatalogCategories {
         this.category_id = category_id;
         this.category_name = category_name;
         this.category_image = category_image;
-
-        CatalogCategories.categories.add(this);
     }
 
     public String getCategory_id() {

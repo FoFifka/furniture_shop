@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.furniture_shop.Activities.admin.AddCategoryActivity;
+import com.example.furniture_shop.Activities.admin.AddProductActivity;
 import com.example.furniture_shop.Classes.AppParams;
 import com.example.furniture_shop.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -96,11 +99,15 @@ public class ProfileActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_logout:
                 logout();
+                break;
             case R.id.action_add_category:
-                addCategory();
+                startActivity(new Intent(getApplicationContext(), AddCategoryActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                break;
             case R.id.action_add_product:
-                addProduct();
-                return true;
+                startActivity(new Intent(getApplicationContext(), AddProductActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -136,59 +143,5 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
         alertDialogBuilder.show();
-    }
-    public void addCategory() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Создать категорию");
-
-        final EditText edt_category_name = new EditText(ProfileActivity.this);
-        edt_category_name.setInputType(InputType.TYPE_CLASS_TEXT);
-        alertDialogBuilder.setView(edt_category_name);
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialogBuilder.setPositiveButton(R.string.action_add_category, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-               addCategoryRequest(edt_category_name.getText().toString());
-            }
-        });
-        alertDialogBuilder.setNegativeButton(R.string.cancel_button, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                alertDialog.dismiss();
-            }
-        });
-        alertDialogBuilder.show();
-    }
-    public void addProduct() {
-        //
-    }
-
-    public void addCategoryRequest(String category_name) {
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        String url = AppParams.API_ADD_CATEGORY;
-
-        JSONObject obj = new JSONObject();
-        try {
-            obj.put("api_token", AppParams.getUserToken());
-            obj.put("name", category_name);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, obj, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-               Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        queue.add(jsonObjectRequest);
-    }
-    public void addProductRequest() {
-        //
     }
 }
