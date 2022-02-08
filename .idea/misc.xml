@@ -4,8 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/fireo/StudioProjects/furniture_shop/app/src/main/res/layout/activity_add_category.xml" value="0.2" />
-        <entry key="..\:/Users/fireo/StudioProjects/furniture_shop/app/src/main/res/layout/activity_add_product.xml" value="0.178125" />
+        <entry key="..\:/Users/fireo/StudioProjects/furniture_shop/app/src/main/res/layout/activity_add_product.xml" value="0.25" />
+        <entry key="..\:/Users/fireo/StudioProjects/furniture_shop/app/src/main/res/layout/activity_cart.xml" value="0.20969202898550723" />
         <entry key="..\:/Users/fireo/StudioProjects/furniture_shop/app/src/main/res/layout/activity_profile.xml" value="0.22282608695652173" />
+        <entry key="..\:/Users/fireo/StudioProjects/furniture_shop/app/src/main/res/layout/category_spinner_item.xml" value="0.20969202898550723" />
+        <entry key="..\:/Users/fireo/StudioProjects/furniture_shop/app/src/main/res/layout/dialog_add_product.xml" value="0.20969202898550723" />
+        <entry key="..\:/Users/fireo/StudioProjects/furniture_shop/app/src/main/res/layout/listview_cart_products.xml" value="0.20969202898550723" />
+        <entry key="..\:/Users/fireo/StudioProjects/furniture_shop/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.33" />
         <entry key="..\:/Users/fireo/StudioProjects/furniture_shop/app/src/main/res/menu/topbar_profile.xml" value="0.346875" />
       </map>
     </option>

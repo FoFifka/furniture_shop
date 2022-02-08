@@ -33,9 +33,9 @@ public class CatalogActivity extends AppCompatActivity {
 
     ListView listViewCategories;
     ProgressBar progressBar;
-    static boolean requestHasBeenSent = false;
+    public static boolean requestHasBeenSent = false;
 
-    static public ArrayList<CatalogCategories> categories = new ArrayList<CatalogCategories>();
+    public static  ArrayList<CatalogCategories> categories = new ArrayList<CatalogCategories>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +89,7 @@ public class CatalogActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         finish();
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                        Log.d("CATEGORY", categories.get(1).getCategory_name());
                         return true;
                 }
                 return false;
@@ -104,7 +105,8 @@ public class CatalogActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    void getCategoriesRequest() {
+    public void getCategoriesRequest() {
+        categories.clear();
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         String url = AppParams.API_CATEGORIES;
 

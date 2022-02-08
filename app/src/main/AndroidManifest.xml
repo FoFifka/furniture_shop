@@ -14,6 +14,12 @@
         android:theme="@style/Theme.Furniture_shop"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activities.admin.AddProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.admin.AddCategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.Admin.AddProductActivity"
             android:exported="false" />
         <activity
