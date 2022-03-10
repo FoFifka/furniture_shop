@@ -24,9 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.furniture_shop.Activities.admin.AddProductActivity;
 import com.example.furniture_shop.Classes.AppParams;
-import com.example.furniture_shop.Classes.CatalogCategories;
 import com.example.furniture_shop.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -88,6 +86,7 @@ public class ProductActivity extends AppCompatActivity {
             public void onClick(View view) {
                 progressBar_product.setVisibility(View.VISIBLE);
                 product.setVisibility(View.GONE);
+                btn_delete_product.setVisibility(View.GONE);
                 deleteProductRequest();
             }
         });
@@ -220,7 +219,7 @@ public class ProductActivity extends AppCompatActivity {
     void deleteProductRequest() {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
-        String url = AppParams.API_REMOVE_PRODUCT;
+        String url = AppParams.API_DELETE_PRODUCT;
 
         JSONObject obj = new JSONObject();
         try {
@@ -242,7 +241,9 @@ public class ProductActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "При удалении продукта произошла ошибка", Toast.LENGTH_SHORT).show();
                 progressBar_product.setVisibility(View.GONE);
+                btn_delete_product.setVisibility(View.VISIBLE);
                 product.setVisibility(View.VISIBLE);
+
             }
         });
         queue.add(jsonObjectRequest);

@@ -25,6 +25,8 @@
     <string name="action_delete">Удалить</string>
     <string name="action_add_category">Создать категорию</string>
     <string name="action_add_product">Добавить продукт</string>
+    <string name="action_delete_category">Удалить категорию</string>
+    <string name="action_delete_product">Удалить продукт</string>
 
 
     <string name="button_ok">ОК</string>

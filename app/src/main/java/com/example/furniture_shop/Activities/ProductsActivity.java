@@ -8,12 +8,16 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.furniture_shop.Classes.AppParams;
@@ -34,6 +38,8 @@ import java.util.Map;
 public class ProductsActivity extends AppCompatActivity {
 
     ListView listViewProducts;
+    ProgressBar progressBarProducts;
+    Button buttonDeleteCategory;
     public static ArrayList<Products> products = new ArrayList<Products>();
 
     public static boolean requestHasBeenSent = false;
@@ -44,13 +50,20 @@ public class ProductsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_products);
 
         listViewProducts = findViewById(R.id.listViewProducts);
-
+        progressBarProducts = findViewById(R.id.progressBarProducts);
+        buttonDeleteCategory = findViewById(R.id.button_delete_category);
 
 
 
         if (!requestHasBeenSent) {
             requestHasBeenSent = true;
             getProductsRequest(category.getCategory_id());
+        }
+
+        if (MainActivity.this_user.getPermission().equals("1")) {
+            buttonDeleteCategory.setVisibility(View.GONE);
+        } else {
+            buttonDeleteCategory.setVisibility(View.VISIBLE);
         }
 
 
@@ -71,6 +84,15 @@ public class ProductsActivity extends AppCompatActivity {
             }
         });
 
+        buttonDeleteCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listViewProducts.setVisibility(View.GONE);
+                buttonDeleteCategory.setVisibility(View.GONE);
+                progressBarProducts.setVisibility(View.VISIBLE);
+                deleteCategoryRequest();
+            }
+        });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.catalog);
@@ -152,5 +174,37 @@ public class ProductsActivity extends AppCompatActivity {
             }
         };
         queue.add(stringRequest);
+    }
+
+    private void deleteCategoryRequest() {
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
+        String url = AppParams.API_DELETE_CATEGORY;
+
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("api_token", AppParams.getUserToken());
+            obj.put("category_id", category.getCategory_id());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, obj, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(getApplicationContext(), "Категория успешно удалёна", Toast.LENGTH_SHORT).show();
+                CatalogActivity.requestHasBeenSent = false;
+                startActivity(new Intent(getApplicationContext(), CatalogActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "При удалении категории произошла ошибка", Toast.LENGTH_SHORT).show();
+                progressBarProducts.setVisibility(View.GONE);
+                listViewProducts.setVisibility(View.VISIBLE);
+            }
+        });
+        queue.add(jsonObjectRequest);
     }
 }
