@@ -14,6 +14,7 @@ public class AppParams {
     public static final String API_ORDER = BASE_URL + "/api/addorder";
     public static final String API_ADD_CART_PRODUCT = BASE_URL + "/api/addcartproduct";
     public static final String API_REMOVE_CART_PRODUCT = BASE_URL + "/api/removecartproducts";
+    public static final String API_REMOVE_PRODUCT = BASE_URL + "/api/deleteproduct";
 
     // SHARED PREFERENSES
     public static String SHARED_PREFS = "FurnitureShop";

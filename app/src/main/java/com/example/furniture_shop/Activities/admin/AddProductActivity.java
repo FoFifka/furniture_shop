@@ -85,8 +85,8 @@ public class AddProductActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, obj, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                //Toast.makeText(getApplicationContext(), "Категория успешно создана", Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
+
+                Toast.makeText(getApplicationContext(), "Продукт успешно добавлен", Toast.LENGTH_LONG).show();
                 Log.d("RESPONSE", response.toString());
 
                 CatalogActivity.requestHasBeenSent = false;
@@ -97,7 +97,7 @@ public class AddProductActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "При создании категории произошла ошибка", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "При добавлении продукта произошла ошибка", Toast.LENGTH_SHORT).show();
                 Log.e("ERROR", error.toString());
             }
         });

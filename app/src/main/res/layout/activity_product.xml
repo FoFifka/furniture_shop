@@ -85,6 +85,16 @@
                 android:layout_marginTop="70dp"
                 android:text="@string/add_cart" />
 
+            <Button
+                android:id="@+id/button_product_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="40dp"
+                android:visibility="gone"
+                android:backgroundTint="@color/green_700_2"
+                android:text="@string/action_delete" />
+
         </LinearLayout>
     </ScrollView>
 
