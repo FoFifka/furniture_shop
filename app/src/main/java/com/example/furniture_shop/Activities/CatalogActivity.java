@@ -9,14 +9,17 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.furniture_shop.Classes.AppParams;
 import com.example.furniture_shop.Classes.CatalogCategories;
@@ -25,6 +28,7 @@ import com.example.furniture_shop.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -51,6 +55,7 @@ public class CatalogActivity extends AppCompatActivity {
         }
 
 
+
         CatalogCategoryAdapter adapter = new CatalogCategoryAdapter(getApplicationContext(), R.layout.listview_catalog_categories, categories);
         listViewCategories.setAdapter(adapter);
 
@@ -65,7 +70,6 @@ public class CatalogActivity extends AppCompatActivity {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
-
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.catalog);
@@ -96,6 +100,7 @@ public class CatalogActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     public void onBackPressed() {

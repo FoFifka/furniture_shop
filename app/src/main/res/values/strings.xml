@@ -18,6 +18,7 @@
     <string name="product_name">Название продукта</string>
     <string name="product_description">Описание продукта</string>
     <string name="product_price">Цена</string>
+    <string name="orders">Заказы</string>
 
 
     <string name="action_settings">Настройки</string>
@@ -25,6 +26,8 @@
     <string name="action_delete">Удалить</string>
     <string name="action_add_category">Создать категорию</string>
     <string name="action_add_product">Добавить продукт</string>
+    <string name="action_delete_category">Удалить категорию</string>
+    <string name="action_delete_product">Удалить продукт</string>
 
 
     <string name="button_ok">ОК</string>

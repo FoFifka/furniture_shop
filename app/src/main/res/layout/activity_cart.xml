@@ -56,6 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="25pt"
             android:text="@string/create_order"
+            android:layout_marginEnd="5dp"
             tools:layout_editor_absoluteX="38dp"
             tools:layout_editor_absoluteY="612dp" />
     </LinearLayout>

@@ -48,4 +48,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_name_profile_activity" />
 
+    <TextView
+        android:id="@+id/textView_orders_profile_activity"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/orders"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_surname_profile_activity" />
+
+    <TextView
+        android:id="@+id/textView_profile_no_orders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Заказов пока нет"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_orders_profile_activity" />
+
+    <ListView
+        android:id="@+id/listView_profile_orders"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_orders_profile_activity">
+
+    </ListView>
+
+    <ProgressBar
+        android:id="@+id/progressBarProfileOrders"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_orders_profile_activity" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

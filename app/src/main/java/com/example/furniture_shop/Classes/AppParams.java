@@ -7,13 +7,20 @@ public class AppParams {
     public static final String API_USER = BASE_URL + "/api/user";
     public static final String API_CATEGORIES = BASE_URL + "/api/getcategories";
     public static final String API_ADD_CATEGORY = BASE_URL + "/api/addcategory";
+    public static final String API_DELETE_CATEGORY = BASE_URL + "/api/deletecategory";
     public static final String API_PRODUCTS = BASE_URL + "/api/getproducts";
     public static final String API_PRODUCT = BASE_URL + "/api/getproduct";
     public static final String API_ADD_PRODUCT = BASE_URL + "/api/addproduct";
     public static final String API_GET_CART_PRODUCTS = BASE_URL + "/api/getcartproducts";
     public static final String API_ORDER = BASE_URL + "/api/addorder";
+    public static final String API_GET_ORDERS = BASE_URL + "/api/getorders";
+    public static final String API_GET_ORDER = BASE_URL + "/api/getorder";
     public static final String API_ADD_CART_PRODUCT = BASE_URL + "/api/addcartproduct";
     public static final String API_REMOVE_CART_PRODUCT = BASE_URL + "/api/removecartproducts";
+    public static final String API_DELETE_PRODUCT = BASE_URL + "/api/deleteproduct";
+    public static final String API_GET_NEWS = BASE_URL + "/api/getnews";
+    public static final String API_ADD_NEWS = BASE_URL + "/api/addnews";
+    public static final String API_DELETE_NEWS = BASE_URL + "/api/deletenews";
 
     // SHARED PREFERENSES
     public static String SHARED_PREFS = "FurnitureShop";

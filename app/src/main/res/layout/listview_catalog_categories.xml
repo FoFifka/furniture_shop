@@ -36,7 +36,7 @@
             android:layout_width="380dp"
             android:layout_height="180dp"
             android:scaleType="fitXY"
-            android:src="@color/green_200"
+            android:src="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -3,41 +3,70 @@ package com.example.furniture_shop.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.furniture_shop.Classes.AppParams;
+import com.example.furniture_shop.Classes.CatalogCategories;
+import com.example.furniture_shop.Classes.News;
+import com.example.furniture_shop.Classes.NewsAdapter;
 import com.example.furniture_shop.Classes.User;
 import com.example.furniture_shop.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     public static User this_user = new User();
-    public static boolean requestHasBeenSent = false;
+    public static boolean requestGetUserDataHasBeenSent = false;
+    public static boolean requestNewsHasBeenSent = false;
+
+    ProgressBar newsProgressBar;
+    ListView listViewNews;
 
 
+    public static ArrayList<News> news = new ArrayList<News>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!requestHasBeenSent) {
+        newsProgressBar = findViewById(R.id.newsProgressBar);
+        listViewNews = findViewById(R.id.listViewNews);
+
+
+        if(!requestGetUserDataHasBeenSent) {
             getUserDataRequest();
         }
+        if(!requestNewsHasBeenSent) {
+            newsProgressBar.setVisibility(View.VISIBLE);
+            getNewsRequest();
+        }
+
+        NewsAdapter newsAdapter = new NewsAdapter(getApplicationContext(), R.layout.listview_news, news);
+        listViewNews.setAdapter(newsAdapter);
+
+
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.home);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -66,6 +95,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void getNewsRequest() {
+        news.clear();
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        String url = AppParams.API_GET_NEWS;
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject news1 = response.getJSONObject(i);
+
+                        String news_id = news1.getString("id");
+                        String news_title = news1.getString("title");
+                        String news_text = news1.getString("text");
+
+
+                        news.add(new News(news_id, news_title, news_text));
+                    } catch (Exception e) {
+                        Log.e("ERROR!", e.toString());
+                    }
+                }
+                requestNewsHasBeenSent = true;
+                newsProgressBar.setVisibility(View.GONE);
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        queue.add(jsonArrayRequest);
+
+    }
+
     void getUserDataRequest() {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
@@ -82,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 if (response.has("id")) {
-                    requestHasBeenSent = true;
+                    requestGetUserDataHasBeenSent = true;
                     try {
                         MainActivity.this_user.setId(response.getString("id"));
                         MainActivity.this_user.setEmail(response.getString("email"));
