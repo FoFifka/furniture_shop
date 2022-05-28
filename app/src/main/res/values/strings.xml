@@ -18,6 +18,7 @@
     <string name="product_name">Название продукта</string>
     <string name="product_description">Описание продукта</string>
     <string name="product_price">Цена</string>
+    <string name="orders">Заказы</string>
 
 
     <string name="action_settings">Настройки</string>

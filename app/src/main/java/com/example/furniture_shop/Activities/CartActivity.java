@@ -268,7 +268,7 @@ public class CartActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CartActivity.this);
                 alertDialogBuilder.setTitle("Оформление заказа");
-                alertDialogBuilder.setMessage("Заказ успешно оформлен, вам на почту отправлена инструкция с оплатой.");
+                alertDialogBuilder.setMessage("Заказ успешно оформлен!");
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialogBuilder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
                     @Override
@@ -282,12 +282,22 @@ public class CartActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CartActivity.this);
+                alertDialogBuilder.setTitle("Оформление заказа");
+                alertDialogBuilder.setMessage("При оформлении заказа произошла ошибка, попробуйте позже!");
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialogBuilder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        alertDialog.dismiss();
+                    }
+                });
+                alertDialogBuilder.show();
             }
         }){
             public Map<String,String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("user_id", MainActivity.this_user.getId());
+                params.put("api_token", AppParams.getUserToken());
                 return params;
             }
         };
