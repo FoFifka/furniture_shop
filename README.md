@@ -1,5 +1,5 @@
 # furniture_shop
-Дипломный проект, мобильное приложение для выдуманногомагазина мебели "Furniture Shop"
+Дипломный проект, мобильное приложение для выдуманного магазина мебели "Furniture Shop"
 
 ![alt text](https://sun9-77.userapi.com/impg/IFEzeNpu6qnoGiVmaagRSJzKbXUi0sqZFepw1Q/b1lxsIFPv-k.jpg?size=408x846&quality=96&sign=879d70b2c52227c58354d9283dd5fa61&type=album)
 ![alt text](https://sun9-65.userapi.com/impg/yBuS7oVjf0uaxC9HgLwriEIwl3ULXyKnG7sFXQ/KK54xC1t5NQ.jpg?size=408x843&quality=96&sign=3245b003c49ea21b835d2f8676bccff1&type=album)
