@@ -9,14 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="15dp"
-        android:backgroundTint="@color/white"
-        android:outlineAmbientShadowColor="@color/black"
-        android:outlineSpotShadowColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:backgroundTintMode="screen"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
@@ -26,7 +24,6 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:hint="01.01.1900"
-                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -37,7 +34,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:hint="Заказ №0000000001"
-                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,7 +44,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="10dp"
                 android:hint="1337 руб."
-                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -59,7 +54,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:hint="Закрыт"
-                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

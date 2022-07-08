@@ -167,31 +167,39 @@ public class ProfileActivity extends AppCompatActivity {
                 orders.clear();
                 try {
                     JSONArray array = new JSONArray(response);
+                    if(array.length() == 0) {
+                        progressBarProfileOrders.setVisibility(View.GONE);
+                        textView_profile_no_orders.setText("Заказов пока нет");
+                        textView_profile_no_orders.setVisibility(View.VISIBLE);
+                    } else {
+                        for (int i = 0; i < array.length(); i++) {
+                            JSONObject order = array.getJSONObject(i);
 
-                    for (int i = 0; i < array.length(); i++) {
-                        JSONObject order = array.getJSONObject(i);
+                            String order_id = order.getString("id");
+                            String order_price = order.getString("total_price");
+                            String order_data = order.getString("created_at");
+                            String order_status = order.getString("status_id");
 
-                        String order_id = order.getString("id");
-                        String order_price = order.getString("total_price");
-                        String order_data = order.getString("created_at");
-                        String order_status = order.getString("status_id");
-
-                        orders.add(new Order(order_id, order_price, order_data, order_status));
+                            orders.add(new Order(order_id, order_price, order_data, order_status));
+                        }
+                        requestOrdersHasBeenSent = true;
+                        progressBarProfileOrders.setVisibility(View.GONE);
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        finish();
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     }
                 } catch (JSONException e) {
+                    Log.e("ERROR1",e.toString()); // todo delete
+                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show(); // todo delete
                     e.printStackTrace();
                 }
-                requestOrdersHasBeenSent = true;
-                progressBarProfileOrders.setVisibility(View.GONE);
-                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
                 progressBarProfileOrders.setVisibility(View.GONE);
-                textView_profile_no_orders.setText(error.toString());
+                textView_profile_no_orders.setText("При получении заказов произошла ошибка");
                 textView_profile_no_orders.setVisibility(View.VISIBLE);
             }
         }) {
@@ -219,6 +227,7 @@ public class ProfileActivity extends AppCompatActivity {
                 MainActivity.requestNewsHasBeenSent = false;
                 MainActivity.requestGetUserDataHasBeenSent = false;
                 startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+                orders.clear();
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }

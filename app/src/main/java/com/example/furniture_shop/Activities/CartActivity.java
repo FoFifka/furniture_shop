@@ -274,6 +274,7 @@ public class CartActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         getCartProductRequest();
+                        ProfileActivity.requestOrdersHasBeenSent = false;
                         alertDialog.dismiss();
                     }
                 });

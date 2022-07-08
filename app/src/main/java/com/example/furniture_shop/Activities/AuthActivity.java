@@ -66,6 +66,8 @@ public class AuthActivity extends AppCompatActivity {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
+
+        ProfileActivity.requestOrdersHasBeenSent = false;
     }
     private void loginRequest() {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
